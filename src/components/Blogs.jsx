@@ -3,6 +3,7 @@ import Img1 from "../assets/blog1.jpeg";
 import Img2 from "../assets/blog2.jpeg";
 import Img3 from "../assets/blog3.jpeg";
 import { motion } from "framer-motion";
+import { fadeIn, textVariant } from "../utils/motion";
 
 const BlogData = [
   {
@@ -31,7 +32,7 @@ const BlogData = [
     description:
       "Grand plans and noble thoughts mean little without action. A simple smile, a helping hand, or a kind word can touch hearts more deeply than unfulfilled promises. Kindness, no matter how small, has the power to change lives. It’s in doing, not just dreaming, that compassion truly shines.",
     date: "Oct 18, 2024",
-    writer: "Frank",
+    writer: "Kevin",
   },
 ];
 
@@ -53,46 +54,85 @@ const cardAnimation = {
 
 const Blogs = () => {
   return (
-    <div className="dark:bg-gray-900 dark:text-white">
-      <div className="container py-12">
-        <h1 className="mb-8 border-l-8 pl-2 text-center text-3xl font-bold">
-          Our Latest Blogs
-        </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-          {BlogData.map((blog, index) => (
-            <motion.div
-              key={index}
-              custom={index}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={cardAnimation}
-              whileHover={{ scale: 1.03 }}
-              className="p-4 shadow-lg transition-all duration-500 hover:shadow-xl dark:bg-slate-950 dark:text-white"
-            >
-              <div className="overflow-hidden">
-                <motion.img
-                  src={blog.img}
-                  alt=""
-                  className="mx-auto h-[250px] w-full object-cover transition duration-700 hover:skew-x-2 hover:scale-100"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </div>
-              <div className="flex justify-between pt-2 text-slate-600 text-sm">
-                <p>{blog.date}</p>
-                <p className="line-clamp-1">by {blog.writer}</p>
-              </div>
+    <section id="blogs">
+      <div className="dark:bg-gray-900 dark:text-white">
+        <div className="container py-12">
+          <motion.h1
+            variants={textVariant(0.2)}
+            initial="hidden"
+            whileInView="show"
+            className="mb-8 border-l-8 pl-2 text-center text-3xl font-bold"
+          >
+            Our Latest Blogs
+          </motion.h1>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            {BlogData.map((blog, index) => (
+              <motion.div
+                key={index}
+                custom={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={cardAnimation}
+                whileHover={{ scale: 1.03 }}
+                className="p-4 shadow-lg transition-all duration-500 hover:shadow-xl dark:bg-slate-950 dark:text-white"
+              >
+                <div className="overflow-hidden">
+                  <motion.img
+                    src={blog.img}
+                    alt=""
+                    className="mx-auto h-[250px] w-full object-cover transition duration-700 hover:skew-x-2 hover:scale-100"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </div>
+                <motion.div
+                  variants={fadeIn("right", 0.4)}
+                  initial="hidden"
+                  whileInView="show"
+                  className="flex justify-between pt-2 text-slate-600 text-sm"
+                >
+                  <motion.p
+                    variants={fadeIn("right", 0.5)}
+                    initial="hidden"
+                    whileInView="show"
+                  >
+                    {blog.date}
+                  </motion.p>
+                  <motion.p
+                    variants={fadeIn("left", 0.5)}
+                    initial="hidden"
+                    whileInView="show"
+                    className="line-clamp-1"
+                  >
+                    by {blog.writer}
+                  </motion.p>
+                </motion.div>
 
-              <div className="space-y-2 py-3">
-                <h1 className="line-clamp-1 font-bold">{blog.title}</h1>
-                <p className="line-clamp-2 text-sm">{blog.description}</p>
-              </div>
-            </motion.div>
-          ))}
+                <div className="space-y-2 py-3">
+                  <motion.h1
+                    variants={textVariant(0.6)}
+                    initial="hidden"
+                    whileInView="show"
+                    className="line-clamp-1 font-bold"
+                  >
+                    {blog.title}
+                  </motion.h1>
+                  <motion.p
+                    variants={fadeIn("up", 0.7)}
+                    initial="hidden"
+                    whileInView="show"
+                    className="line-clamp-2 text-sm"
+                  >
+                    {blog.description}
+                  </motion.p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

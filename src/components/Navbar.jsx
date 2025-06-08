@@ -3,6 +3,8 @@ import { FaCaretDown } from "react-icons/fa";
 import { BiPhoneCall, BiSolidSun, BiSolidMoon } from "react-icons/bi";
 import { HiMenuAlt1, HiMenuAlt3 } from "react-icons/hi";
 import ResponsiveMenu from "./ResponsiveMenu";
+import { motion } from "framer-motion";
+import { fadeIn } from "../utils/motion";
 
 const Navbar = () => {
   const [theme, setTheme] = useState(
@@ -26,7 +28,12 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-gradient-to-l from-violet-900 via-violet-700 to-violet-900 text-white fixed top-0 left-0 w-full border-b-[1px] border-primary/50 z-50">
+      <motion.nav
+        variants={fadeIn("down", 0.2)}
+        initial="hidden"
+        whileInView="show"
+        className="bg-gradient-to-l from-violet-900 via-violet-700 to-violet-900 text-white fixed top-0 left-0 w-full border-b-[1px] border-primary/50 z-50"
+      >
         <div className="container">
           <div className="flex items-center justify-between h-[72px] py-2">
             {/*Logo section*/}
@@ -53,15 +60,23 @@ const Navbar = () => {
                   {/* dropdown section */}
                   <div className="absolute -left-9 z-[99999] hidden w-[150px] shadow-md p-2 text-black rounded-md group-hover:block">
                     <ul className="space-y-3">
-                      <li className="p-2 hover:bg-violet-200">Services</li>
-                      <li className="p-2 hover:bg-violet-200">Clients</li>
-                      <li className="p-2 hover:bg-violet-200">
-                        Privacy Policy
-                      </li>
+                      <a href="#join">
+                        <li className="p-2 hover:bg-violet-200">
+                          Join the Cause
+                        </li>
+                      </a>
+                      <a href="#initiatives">
+                        <li className="p-2 hover:bg-violet-200">Initiatives</li>
+                      </a>
+                      <a href="#blogs">
+                        <li className="p-2 hover:bg-violet-200">Blogs</li>
+                      </a>
                     </ul>
                   </div>
                 </li>
-                <li>About us</li>
+                <a href="#about">
+                  <li className="cursor-pointer">About us</li>
+                </a>
                 <li>
                   <div className="flex items-center gap-4">
                     <div>
@@ -118,7 +133,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* Mobile sidebar Menu component*/}
       <ResponsiveMenu showMenu={showMenu} />
