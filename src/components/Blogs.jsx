@@ -61,7 +61,7 @@ const Blogs = () => {
             variants={textVariant(0.2)}
             initial="hidden"
             whileInView="show"
-            className="mb-8 border-l-8 pl-2 text-center text-3xl font-bold"
+            className="mb-8 pl-2 text-center text-3xl font-bold"
           >
             Our Latest Blogs
           </motion.h1>

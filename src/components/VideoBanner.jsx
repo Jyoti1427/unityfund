@@ -22,31 +22,26 @@ const VideoBanner = () => {
             variants={fadeIn("right", 0.2)}
             initial="hidden"
             whileInView="show"
-            className="grid grid-cols-1 items-center md:grid-cols-2 gap-4 md:gap-8"
+            className="grid grid-cols-1 items-center md:grid-cols-2 gap-4 md:gap-12"
           >
             {/* video stack */}
             <motion.div
               variants={fadeIn("up", 0.4)}
               initial="hidden"
               whileInView="show"
-              className="relative md:h-[740px] flex flex-col gap-6 md:gap-0 md:block"
+              className="relative flex flex-col gap-6 md:gap-0 md:block overflow-hidden"
             >
               {videoLinks.map((link, index) => (
                 <div
                   key={index}
-                  className={`w-full mx-auto md:w-[500px] rounded-xl shadow-lg overflow-hidden transition-transform duration-300 ease-in-out hover:scale-105 hover:z-50 ${
-                    index === 0
-                      ? "md:absolute md:left-28 -top-8 z-10"
-                      : index === 1
-                      ? "md:absolute md:top-60 -left-48 z-20"
-                      : "md:absolute md:-bottom-8 left-28 z-30"
-                  }`}
+                  className={`w-[90%] sm:w-[85%] md:w-[320px] lg:w-[400px] xl:w-[500px] mx-auto rounded-xl shadow-lg overflow-hidden transition-transform duration-300 ease-in-out hover:scale-105 hover:z-50 mb-6
+                   `}
                 >
                   <motion.iframe
                     variants={fadeIn("up", 0.5)}
                     initial="hidden"
                     whileInView="show"
-                    className="w-full h-40 sm:h-48 md:h-64 rounded-xl"
+                    className="w-full h-32 sm:h-40 md:h-52 rounded-xl"
                     src={link}
                     title={`video-${index}`}
                     frameBorder="0"
